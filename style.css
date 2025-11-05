@@ -995,6 +995,47 @@ header h1 {
     color: #bbb;
 }
 
+/* 로그인 선택 모달 */
+.btn-login-order,
+.btn-guest-order {
+    width: 100%;
+    padding: 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    position: relative;
+}
+
+.btn-login-order {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-login-order:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-guest-order {
+    background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+    color: #333;
+}
+
+.btn-guest-order:hover {
+    background: linear-gradient(135deg, #e8e8e8, #d5d5d5);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-login-order:active,
+.btn-guest-order:active {
+    transform: translateY(0);
+}
+
 .history-item {
     padding: 15px;
     background: #f9f9f9;
