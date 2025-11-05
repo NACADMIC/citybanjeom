@@ -17,8 +17,8 @@
                 <button class="login-btn" id="loginBtn">
                     <span id="userNameDisplay">로그인</span>
                 </button>
-                <button class="icon-btn" id="orderStatusBtn" title="주문조회">
-                    <span>🔍</span>
+                <button class="icon-btn" id="orderStatusBtn" title="주문추적">
+                    <span>🛵</span>
                 </button>
                 <button class="icon-btn" id="orderHistoryBtn" title="주문내역">
                     <span>📋</span>
@@ -49,6 +49,15 @@
             <span class="info-text">최소주문 9,900원</span>
         </div>
     </section>
+
+    <!-- 검색바 -->
+    <div class="search-container">
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="메뉴를 검색하세요 (예: 짜장, 짬뽕)">
+            <button class="clear-btn" id="clearSearch">✕</button>
+        </div>
+    </div>
 
     <nav class="category-nav">
         <button class="category-btn active" data-category="all">전체</button>

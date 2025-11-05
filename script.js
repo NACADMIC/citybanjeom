@@ -370,6 +370,8 @@ const totalPrice = document.getElementById('totalPrice');
 const orderBtn = document.getElementById('orderBtn');
 const overlay = document.getElementById('overlay');
 const categoryBtns = document.querySelectorAll('.category-btn');
+const searchInput = document.getElementById('searchInput');
+const clearSearch = document.getElementById('clearSearch');
 
 // 포인트 관련 DOM 요소
 const pointsValue = document.getElementById('pointsValue');
@@ -431,9 +433,29 @@ const orderHistoryList = document.getElementById('orderHistoryList');
 function renderMenu() {
     menuList.innerHTML = '';
     
-    const filteredMenu = currentCategory === 'all' 
+    let filteredMenu = currentCategory === 'all' 
         ? menuData 
         : menuData.filter(item => item.category === currentCategory);
+    
+    // 검색 필터링
+    if (searchKeyword) {
+        filteredMenu = filteredMenu.filter(item => 
+            item.name.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+            item.desc.toLowerCase().includes(searchKeyword.toLowerCase())
+        );
+    }
+    
+    // 검색 결과 없음
+    if (filteredMenu.length === 0) {
+        menuList.innerHTML = `
+            <div style="text-align: center; padding: 60px 20px; color: #999;">
+                <div style="font-size: 48px; margin-bottom: 16px;">🔍</div>
+                <p style="font-size: 16px; font-weight: 600; margin-bottom: 8px;">검색 결과가 없습니다</p>
+                <p style="font-size: 14px;">"${searchKeyword}"에 대한 메뉴를 찾을 수 없어요</p>
+            </div>
+        `;
+        return;
+    }
     
     filteredMenu.forEach(item => {
         const menuItem = document.createElement('div');
@@ -586,8 +608,37 @@ categoryBtns.forEach(btn => {
         categoryBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         currentCategory = btn.dataset.category;
+        searchKeyword = '';
+        searchInput.value = '';
+        clearSearch.classList.remove('show');
         renderMenu();
     });
+});
+
+// 메뉴 검색
+searchInput.addEventListener('input', (e) => {
+    searchKeyword = e.target.value.trim();
+    
+    if (searchKeyword) {
+        clearSearch.classList.add('show');
+        // 검색 시 전체 카테고리로 변경
+        currentCategory = 'all';
+        categoryBtns.forEach(b => b.classList.remove('active'));
+        categoryBtns[0].classList.add('active');
+    } else {
+        clearSearch.classList.remove('show');
+    }
+    
+    renderMenu();
+});
+
+// 검색 초기화
+clearSearch.addEventListener('click', () => {
+    searchInput.value = '';
+    searchKeyword = '';
+    clearSearch.classList.remove('show');
+    renderMenu();
+    searchInput.focus();
 });
 
 // 포인트 관련 이벤트
