@@ -357,7 +357,7 @@ let savedPhone = localStorage.getItem('savedPhone') || '';
 // 포인트 적립률 (5%)
 const POINT_RATE = 0.05;
 const DELIVERY_FEE = 3000;
-const MIN_ORDER_AMOUNT = 15000;
+const MIN_ORDER_AMOUNT = 9900;
 
 // DOM 요소
 const menuList = document.getElementById('menuList');
