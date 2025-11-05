@@ -1059,8 +1059,13 @@ function showCartNotification() {
 }
 
 // 로그인 버튼 기능
-document.getElementById('loginBtn').addEventListener('click', () => {
+document.getElementById('loginBtn').addEventListener('click', (e) => {
+    console.log('로그인 버튼 클릭됨');
+    e.preventDefault();
+    e.stopPropagation();
+    
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    console.log('현재 사용자:', currentUser);
     
     if (currentUser.phone && !currentUser.isGuest) {
         // 로그인된 회원 - 로그아웃
@@ -1070,7 +1075,8 @@ document.getElementById('loginBtn').addEventListener('click', () => {
         }
     } else {
         // 비회원 또는 게스트 - 로그인 페이지로
-        window.location.href = 'login.html';
+        console.log('로그인 페이지로 이동 시도');
+        window.location.href = './login.html';
     }
 });
 
