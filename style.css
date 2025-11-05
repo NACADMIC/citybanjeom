@@ -1353,6 +1353,19 @@ header h1 {
     background: #f9f9f9;
     border-radius: 8px;
     margin-bottom: 15px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.history-order-item:hover {
+    background: #f0f4ff;
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.history-order-item:active {
+    transform: translateY(0);
 }
 
 .history-order-header {
