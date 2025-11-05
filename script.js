@@ -1,180 +1,346 @@
-// 메뉴 데이터 - 실제 음식 사진 사용
+// 시티반점 실제 메뉴 데이터
 const menuData = [
+    // 면류
     {
         id: 1,
-        name: '짜장면',
-        desc: '달콤한 춘장이 일품인 짜장면',
-        price: 6000,
+        name: '[안심] 시티짜장',
+        desc: '부드럽고 고급진 안심 고기로 볶은 짜장',
+        price: 6900,
         category: 'noodle',
-        image: 'https://i.ibb.co/ZMXwq1P/jjajangmyeon.jpg'
+        emoji: '🍜',
+        color: '#3d2817',
+        badge: '인기'
     },
     {
         id: 2,
-        name: '짬뽕',
-        desc: '매콤한 해물이 듬뿍 들어간 짬뽕',
-        price: 7000,
+        name: '[안심] 간짜장',
+        desc: '부드럽고 고급진 안심고기와 아삭한 양파',
+        price: 9000,
         category: 'noodle',
-        image: 'https://i.ibb.co/qYyKq7h/jjamppong.jpg'
+        emoji: '🍝',
+        color: '#4a3728'
     },
     {
         id: 3,
-        name: '간짜장',
-        desc: '고소한 간짜장',
-        price: 7000,
+        name: '고추간짜장 [실장추천]',
+        desc: '특별한 메뉴! 남은 장에 밥 비벼드세요',
+        price: 11000,
         category: 'noodle',
-        image: 'https://i.ibb.co/vXm5BZR/ganjjajang.jpg'
+        emoji: '🌶️',
+        color: '#c62828',
+        badge: '대표'
     },
     {
         id: 4,
-        name: '삼선짜장',
-        desc: '해산물이 듬뿍 들어간 짜장면',
-        price: 8000,
+        name: '(통오징어1마리) 직화짬뽕',
+        desc: '통오징어 한마리가 들어간 직화짬뽕',
+        price: 9500,
         category: 'noodle',
-        image: 'https://i.ibb.co/7XqL8hQ/samseon.jpg'
+        emoji: '🦑',
+        color: '#d32f2f'
     },
     {
         id: 5,
-        name: '볶음짬뽕',
-        desc: '매콤달콤한 볶음짬뽕',
-        price: 8000,
+        name: '열직화짬뽕(매운)',
+        desc: '일반짬뽕보다 2~3배 매운 핫한 짬뽕',
+        price: 10500,
         category: 'noodle',
-        image: 'https://i.ibb.co/HKFjN5V/bokkeum-jjamppong.jpg'
+        emoji: '🔥',
+        color: '#ff3d00',
+        badge: 'HOT'
     },
     {
         id: 6,
-        name: '우동',
-        desc: '담백한 우동',
-        price: 6000,
+        name: '야끼우동 [실장추천]',
+        desc: '경상도식 볶음짬뽕, 한번 먹으면 또 생각나는',
+        price: 11000,
         category: 'noodle',
-        image: 'https://i.ibb.co/2KQ5mZ4/udong.jpg'
+        emoji: '🍲',
+        color: '#ff6b35',
+        badge: '대표'
     },
     {
         id: 7,
-        name: '볶음밥',
-        desc: '야채가 듬뿍 들어간 볶음밥',
-        price: 7000,
-        category: 'rice',
-        image: 'https://i.ibb.co/hLXj6Rp/bokkeumbap.jpg'
+        name: '삼선간짜장',
+        desc: '안심고기, 삼선해물, 아삭한 양파',
+        price: 11000,
+        category: 'noodle',
+        emoji: '🦐',
+        color: '#ff6b35'
     },
     {
         id: 8,
-        name: '짬뽕밥',
-        desc: '얼큰한 짬뽕밥',
-        price: 8000,
-        category: 'rice',
-        image: 'https://i.ibb.co/yy5s8Lq/jjamppongbap.jpg'
+        name: '백짬뽕(삼선)',
+        desc: '고추가루를 뺀 하얀 국물에 약간 매운맛',
+        price: 11000,
+        category: 'noodle',
+        emoji: '🍜',
+        color: '#eeeeee'
     },
     {
         id: 9,
-        name: '해물볶음밥',
-        desc: '싱싱한 해물이 들어간 볶음밥',
-        price: 8500,
-        category: 'rice',
-        image: 'https://i.ibb.co/jhTTRcf/haemul-bokkeumbap.jpg'
+        name: '삼선우동',
+        desc: '삼선해물과 맑은 색에 담백한 맛',
+        price: 11000,
+        category: 'noodle',
+        emoji: '🍜',
+        color: '#8d6e63'
     },
     {
         id: 10,
-        name: '탕수육(소)',
-        desc: '바삭하고 달콤한 탕수육',
-        price: 15000,
-        category: 'main',
-        image: 'https://i.ibb.co/Wfg5KmY/tangsooyook.jpg'
+        name: '황제고추간짜장',
+        desc: '해물 듬뿍 고추간짜장 업그레이드',
+        price: 13000,
+        category: 'noodle',
+        emoji: '👑',
+        color: '#ffd700'
     },
     {
         id: 11,
-        name: '탕수육(중)',
-        desc: '바삭하고 달콤한 탕수육',
-        price: 20000,
-        category: 'main',
-        image: 'https://i.ibb.co/Wfg5KmY/tangsooyook.jpg'
+        name: '(특)삼선짬뽕',
+        desc: '통오징어, 여러가지 해물 듬뿍',
+        price: 13000,
+        category: 'noodle',
+        emoji: '🦞',
+        color: '#e65100'
     },
     {
         id: 12,
-        name: '탕수육(대)',
-        desc: '바삭하고 달콤한 탕수육',
-        price: 25000,
-        category: 'main',
-        image: 'https://i.ibb.co/Wfg5KmY/tangsooyook.jpg'
+        name: '소고기짬뽕',
+        desc: '불향가득 소고기를 직화로 볶아 풍미UP',
+        price: 13000,
+        category: 'noodle',
+        emoji: '🥩',
+        color: '#8b4513'
     },
+    // 밥류
     {
         id: 13,
-        name: '깐풍기',
-        desc: '매콤달콤한 깐풍기',
-        price: 18000,
-        category: 'main',
-        image: 'https://i.ibb.co/5xFT7Jj/kanpunggi.jpg'
+        name: '[구름계란] 볶음밥',
+        desc: '짜장소스, 짬뽕국물, 볶음밥 세가지 맛',
+        price: 9000,
+        category: 'rice',
+        emoji: '🍚',
+        color: '#f57c00'
     },
     {
         id: 14,
-        name: '라조기',
-        desc: '매콤한 라조기',
-        price: 18000,
-        category: 'main',
-        image: 'https://i.ibb.co/LJqp9Pm/lazogi.jpg'
+        name: '짬뽕밥',
+        desc: '직화짬뽕을 공기밥과 함께',
+        price: 10000,
+        category: 'rice',
+        emoji: '🍛',
+        color: '#d84315'
     },
     {
         id: 15,
-        name: '양장피',
-        desc: '야채가 풍부한 양장피',
-        price: 20000,
-        category: 'main',
-        image: 'https://i.ibb.co/VTcTgGF/yangjangpi.jpg'
+        name: '잡채밥',
+        desc: '탱글탱글 당면, 야채와 유슬고기',
+        price: 10000,
+        category: 'rice',
+        emoji: '🍜',
+        color: '#6d4c41'
     },
     {
         id: 16,
-        name: '유산슬',
-        desc: '고급스러운 유산슬',
-        price: 22000,
-        category: 'main',
-        image: 'https://i.ibb.co/0BjGzTY/yusanseul.jpg'
+        name: '마파두부덮밥',
+        desc: '매콤하고 고소한 마파두부',
+        price: 10000,
+        category: 'rice',
+        emoji: '🌶️',
+        color: '#c62828'
     },
     {
         id: 17,
-        name: '팔보채',
-        desc: '8가지 재료가 들어간 팔보채',
-        price: 20000,
-        category: 'main',
-        image: 'https://i.ibb.co/D7kFTwQ/palbochae.jpg'
+        name: '[총총] 새우볶음밥',
+        desc: '총총 박힌 새우와 세가지 맛',
+        price: 11000,
+        category: 'rice',
+        emoji: '🦐',
+        color: '#ff8a65'
     },
     {
         id: 18,
-        name: '마파두부',
-        desc: '얼큰한 마파두부',
-        price: 15000,
-        category: 'main',
-        image: 'https://i.ibb.co/FhYRPRH/mapadubu.jpg'
+        name: '삼선볶음밥',
+        desc: '삼선 해물과 세가지 맛',
+        price: 11000,
+        category: 'rice',
+        emoji: '🦑',
+        color: '#ff6b35'
     },
     {
         id: 19,
-        name: '군만두',
-        desc: '바삭한 군만두',
-        price: 6000,
-        category: 'appetizer',
-        image: 'https://i.ibb.co/dK9rZzY/gunmandu.jpg'
+        name: '중화비빔밥 [실장추천]',
+        desc: '해물, 야채 매콤하게 직화로 볶고 계란까지',
+        price: 11000,
+        category: 'rice',
+        emoji: '🍱',
+        color: '#ff5722',
+        badge: '대표'
     },
     {
         id: 20,
-        name: '물만두',
-        desc: '촉촉한 물만두',
-        price: 6000,
-        category: 'appetizer',
-        image: 'https://i.ibb.co/Xy8FHhY/mulmandu.jpg'
+        name: '속풀이순두부짬뽕밥',
+        desc: '순두부 한통이 통째로! 짬뽕과 조화',
+        price: 11000,
+        category: 'rice',
+        emoji: '🥘',
+        color: '#f44336',
+        badge: '대표'
     },
     {
         id: 21,
-        name: '계란탕',
-        desc: '부드러운 계란탕',
-        price: 5000,
-        category: 'appetizer',
-        image: 'https://i.ibb.co/LpZqFgq/gyerantang.jpg'
+        name: '한돈제육덮밥',
+        desc: '불향 가득한 직화제육덮밥',
+        price: 11000,
+        category: 'rice',
+        emoji: '🍖',
+        color: '#d32f2f'
     },
     {
         id: 22,
-        name: '짜사이',
-        desc: '아삭한 짜사이',
+        name: '유산슬밥',
+        desc: '해삼, 죽순, 버섯의 담백하고 고급스러운 맛',
+        price: 13000,
+        category: 'rice',
+        emoji: '🥘',
+        color: '#6d4c41'
+    },
+    {
+        id: 23,
+        name: '잡탕밥(해물듬뿍)',
+        desc: '삼선해물과 야채를 직화로 조리',
+        price: 14000,
+        category: 'rice',
+        emoji: '🦞',
+        color: '#ff6b35'
+    },
+    // 요리류
+    {
+        id: 24,
+        name: '[바삭부들] 안심탕수육(소)',
+        desc: '고급 안심 고기로 만든 바삭부들 탕수육',
+        price: 20000,
+        category: 'main',
+        emoji: '🍖',
+        color: '#e65100',
+        badge: '대표'
+    },
+    {
+        id: 25,
+        name: '[바삭부들] 안심탕수육(중)',
+        desc: '고급 안심 고기로 만든 바삭부들 탕수육',
+        price: 25000,
+        category: 'main',
+        emoji: '🍖',
+        color: '#ef6c00',
+        badge: '대표'
+    },
+    {
+        id: 26,
+        name: '[바삭부들] 안심탕수육(대)',
+        desc: '고급 안심 고기로 만든 바삭부들 탕수육',
+        price: 30000,
+        category: 'main',
+        emoji: '🍖',
+        color: '#f57c00',
+        badge: '대표'
+    },
+    {
+        id: 27,
+        name: '양장피',
+        desc: '화려한 비주얼! 야채, 해물과 겨자소스',
+        price: 32000,
+        category: 'main',
+        emoji: '🥗',
+        color: '#558b2f'
+    },
+    {
+        id: 28,
+        name: '삼선술국',
+        desc: '삼선해물과 함께 조리한 술국',
+        price: 15000,
+        category: 'main',
+        emoji: '🍲',
+        color: '#d32f2f'
+    },
+    // 신메뉴
+    {
+        id: 29,
+        name: '고기듬뿍 짜장',
+        desc: '안심고기 170g 추가! 고기집 1인분 수준',
+        price: 10000,
+        category: 'noodle',
+        emoji: '🥩',
+        color: '#8b4513',
+        badge: 'NEW'
+    },
+    {
+        id: 30,
+        name: '바지락폭탄 짬뽕',
+        desc: '바지락 80~100마리 이상! 다른 해물 없음',
+        price: 11000,
+        category: 'noodle',
+        emoji: '🐚',
+        color: '#00897b',
+        badge: 'NEW'
+    },
+    {
+        id: 31,
+        name: '고기듬뿍 간짜장',
+        desc: '안심고기 170g 추가! 소스 못버려요',
+        price: 12000,
+        category: 'noodle',
+        emoji: '🥩',
+        color: '#6d4c41',
+        badge: 'NEW'
+    },
+    {
+        id: 32,
+        name: '고기듬뿍 고추간짜장',
+        desc: '안심고기 170g 추가! 특별한 조합',
+        price: 14000,
+        category: 'noodle',
+        emoji: '🥩',
+        color: '#bf360c',
+        badge: 'NEW'
+    },
+    // 사이드
+    {
+        id: 33,
+        name: '군만두(8P)',
+        desc: '바삭한 군만두 8개 + 미니간장',
+        price: 5000,
+        category: 'side',
+        emoji: '🥟',
+        color: '#fbc02d'
+    },
+    {
+        id: 34,
+        name: '연유꽃빵튀김(4P)',
+        desc: '꽃빵튀김과 연유크림 소스',
         price: 3000,
-        category: 'appetizer',
-        image: 'https://i.ibb.co/hDpjLVR/jjasai.jpg'
+        category: 'side',
+        emoji: '🍩',
+        color: '#ffeb3b'
+    },
+    {
+        id: 35,
+        name: '멘보샤(6P)',
+        desc: '새우토스트! 식빵 사이에 으깬 새우',
+        price: 6000,
+        category: 'side',
+        emoji: '🦐',
+        color: '#ff9800'
+    },
+    {
+        id: 36,
+        name: '칠리만두(8P)',
+        desc: '매콤한 칠리소스로 조리한 만두',
+        price: 7000,
+        category: 'side',
+        emoji: '🌶️',
+        color: '#f44336'
     }
 ];
 
@@ -263,13 +429,17 @@ function renderMenu() {
     filteredMenu.forEach(item => {
         const menuItem = document.createElement('div');
         menuItem.className = 'menu-item';
+        const badgeHtml = item.badge ? `<span class="menu-badge">${item.badge}</span>` : '';
         menuItem.innerHTML = `
-            <div class="menu-image">
-                <img src="${item.image}" alt="${item.name}" loading="lazy">
+            <div class="menu-image" style="background: linear-gradient(135deg, ${item.color}22, ${item.color}44);">
+                <span class="menu-emoji">${item.emoji}</span>
             </div>
             <div class="menu-info">
                 <div>
-                    <div class="menu-name">${item.name}</div>
+                    <div class="menu-name">
+                        ${item.name}
+                        ${badgeHtml}
+                    </div>
                     <div class="menu-desc">${item.desc}</div>
                 </div>
                 <div class="menu-footer">
