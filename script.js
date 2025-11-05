@@ -949,15 +949,7 @@ closeCompleteModal.addEventListener('click', () => {
     overlay.classList.remove('show');
 });
 
-// 주문 상태 조회
-orderStatusBtn.addEventListener('click', () => {
-    orderStatusModal.classList.add('show');
-    overlay.classList.add('show');
-    orderStatusResult.classList.add('hidden');
-    orderNotFound.classList.add('hidden');
-    orderNumberInput.value = '';
-});
-
+// 주문 상태 조회 모달 닫기
 closeOrderStatusModal.addEventListener('click', () => {
     orderStatusModal.classList.remove('show');
     overlay.classList.remove('show');
@@ -1079,13 +1071,16 @@ function renderOrderHistory() {
     }
     
     orderHistoryList.innerHTML = orderHistory.map(order => `
-        <div class="history-order-item">
+        <div class="history-order-item" onclick="trackOrder('${order.orderNumber}')" style="cursor: pointer;">
             <div class="history-order-header">
                 <div>
                     <div class="history-order-date">${order.date}</div>
                     <div style="font-size: 12px; color: #999; margin-top: 3px;">주문번호: ${order.orderNumber}</div>
                 </div>
-                <div class="history-order-status">${order.status}</div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div class="history-order-status">${order.status}</div>
+                    <span style="font-size: 20px;">🛵</span>
+                </div>
             </div>
             <div class="history-order-items">
                 ${order.items.map(item => `
@@ -1098,8 +1093,26 @@ function renderOrderHistory() {
                 총 ${order.finalTotal.toLocaleString()}원
                 ${order.earnedPoints > 0 ? `<span style="color: #4caf50; font-size: 13px; margin-left: 8px;">(+${order.earnedPoints}P 적립)</span>` : ''}
             </div>
+            <div style="text-align: center; padding-top: 12px; border-top: 1px solid #e0e0e0; margin-top: 12px; color: #ff6b6b; font-size: 13px; font-weight: 600;">
+                📍 클릭하여 배달 상태 확인
+            </div>
         </div>
     `).join('');
+}
+
+// 주문 추적 (주문내역에서 호출)
+function trackOrder(orderNumber) {
+    // 주문내역 모달 닫기
+    orderHistoryModal.classList.remove('show');
+    
+    // 주문 상태 조회 모달 열기
+    orderStatusModal.classList.add('show');
+    orderStatusResult.classList.add('hidden');
+    orderNotFound.classList.add('hidden');
+    
+    // 주문번호 입력하고 자동 검색
+    orderNumberInput.value = orderNumber;
+    searchOrderStatus(orderNumber);
 }
 
 // 장바구니 알림 효과
