@@ -771,6 +771,143 @@ header h1 {
     padding: 40px 20px;
 }
 
+/* 주문 상태 조회 */
+.order-search {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.order-search input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.order-search input:focus {
+    outline: none;
+    border-color: #ff6b6b;
+}
+
+.order-status-result {
+    animation: fadeIn 0.3s ease;
+}
+
+.order-info-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.order-number-badge {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.order-number-badge strong {
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.order-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.order-detail p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.95;
+}
+
+.order-status-track {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.status-step {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+}
+
+.status-step.active {
+    opacity: 1;
+    background: linear-gradient(135deg, #fff5f5, #ffe0e0);
+    border: 2px solid #ff6b6b;
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
+}
+
+.status-step.completed {
+    opacity: 1;
+    background: linear-gradient(135deg, #f0fff4, #dcfce7);
+    border: 2px solid #4ade80;
+}
+
+.step-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+}
+
+.step-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.step-info strong {
+    font-size: 16px;
+    color: #333;
+}
+
+.step-info span {
+    font-size: 13px;
+    color: #666;
+}
+
+.order-items-summary {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.order-items-summary h4 {
+    margin: 0 0 10px 0;
+    font-size: 15px;
+    color: #333;
+}
+
+.order-not-found {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+}
+
+.order-not-found p {
+    margin: 10px 0;
+}
+
+.small-text {
+    font-size: 13px;
+    color: #bbb;
+}
+
 .history-item {
     padding: 15px;
     background: #f9f9f9;

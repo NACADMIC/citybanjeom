@@ -17,6 +17,9 @@
                 <button class="login-btn" id="loginBtn">
                     <span id="userNameDisplay">로그인</span>
                 </button>
+                <button class="icon-btn" id="orderStatusBtn" title="주문조회">
+                    <span>🔍</span>
+                </button>
                 <button class="icon-btn" id="orderHistoryBtn" title="주문내역">
                     <span>📋</span>
                 </button>
@@ -237,6 +240,78 @@
                     </div>
                     <p class="estimated-time">예상 도착 시간: <strong id="estimatedTime">약 40~50분</strong></p>
                     <button class="btn-primary" id="closeCompleteModal">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 주문 상태 조회 모달 -->
+    <div class="modal" id="orderStatusModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>주문 상태 조회</h2>
+                <button class="close-btn" id="closeOrderStatusModal">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="order-search">
+                    <input type="text" id="orderNumberInput" placeholder="주문번호 입력 (예: CT12345678)" maxlength="10">
+                    <button class="btn-primary" id="searchOrderBtn">조회하기</button>
+                </div>
+                
+                <div class="order-status-result hidden" id="orderStatusResult">
+                    <div class="order-info-card">
+                        <div class="order-number-badge">
+                            <span>주문번호</span>
+                            <strong id="resultOrderNumber"></strong>
+                        </div>
+                        <div class="order-detail">
+                            <p><strong>주문일시:</strong> <span id="resultOrderDate"></span></p>
+                            <p><strong>배달주소:</strong> <span id="resultOrderAddress"></span></p>
+                            <p><strong>연락처:</strong> <span id="resultOrderPhone"></span></p>
+                            <p><strong>결제금액:</strong> <span id="resultOrderAmount"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="order-status-track">
+                        <div class="status-step" id="step1">
+                            <div class="step-icon">📝</div>
+                            <div class="step-info">
+                                <strong>주문접수</strong>
+                                <span id="time1"></span>
+                            </div>
+                        </div>
+                        <div class="status-step" id="step2">
+                            <div class="step-icon">👨‍🍳</div>
+                            <div class="step-info">
+                                <strong>조리중</strong>
+                                <span id="time2"></span>
+                            </div>
+                        </div>
+                        <div class="status-step" id="step3">
+                            <div class="step-icon">🏍️</div>
+                            <div class="step-info">
+                                <strong>배달중</strong>
+                                <span id="time3"></span>
+                            </div>
+                        </div>
+                        <div class="status-step" id="step4">
+                            <div class="step-icon">✅</div>
+                            <div class="step-info">
+                                <strong>배달완료</strong>
+                                <span id="time4"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-items-summary">
+                        <h4>주문 메뉴</h4>
+                        <div id="resultOrderItems"></div>
+                    </div>
+                </div>
+
+                <div class="order-not-found hidden" id="orderNotFound">
+                    <p>❌ 주문을 찾을 수 없습니다</p>
+                    <p class="small-text">주문번호를 다시 확인해주세요</p>
                 </div>
             </div>
         </div>
