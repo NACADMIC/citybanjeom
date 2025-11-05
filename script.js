@@ -693,6 +693,23 @@ function openOrderModal() {
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const finalTotal = total - usedPoints + DELIVERY_FEE;
     
+    // 현재 사용자 확인
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    const isGuest = !currentUser.phone || currentUser.isGuest;
+    
+    // 비회원이면 포인트 사용 불가
+    const pointsSection = document.querySelector('.points-section');
+    if (pointsSection) {
+        if (isGuest) {
+            pointsSection.style.display = 'none';
+            usedPoints = 0;
+            usePointsCheck.checked = false;
+            pointsInputGroup.style.display = 'none';
+        } else {
+            pointsSection.style.display = 'block';
+        }
+    }
+    
     // 주문 상품 요약
     orderItemsSummary.innerHTML = cart.map(item => `
         <div class="summary-item">
@@ -832,7 +849,7 @@ function processOrder() {
     orderModal.classList.remove('show');
     
     // 주문 완료 모달 표시
-    showOrderComplete(orderNumber);
+    showOrderComplete(orderNumber, isGuest);
     
     // 초기화
     cart = [];
@@ -848,8 +865,19 @@ function processOrder() {
 }
 
 // 주문 완료 모달 표시
-function showOrderComplete(orderNumber) {
+function showOrderComplete(orderNumber, isGuest) {
     completedOrderNumber.textContent = orderNumber;
+    
+    // 비회원은 포인트 안내 숨기기
+    const pointsEarnedText = document.querySelector('.order-complete-content .points-earned');
+    if (pointsEarnedText) {
+        if (isGuest) {
+            pointsEarnedText.style.display = 'none';
+        } else {
+            pointsEarnedText.style.display = 'block';
+        }
+    }
+    
     orderCompleteModal.classList.add('show');
     overlay.classList.add('show');
 }
@@ -910,7 +938,36 @@ function showCartNotification() {
     }, 200);
 }
 
+// 로그인 버튼 기능
+document.getElementById('loginBtn').addEventListener('click', () => {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    
+    if (currentUser.phone && !currentUser.isGuest) {
+        // 로그인된 회원 - 로그아웃
+        if (confirm(`${currentUser.name}님, 로그아웃 하시겠습니까?`)) {
+            localStorage.removeItem('currentUser');
+            location.reload();
+        }
+    } else {
+        // 비회원 또는 게스트 - 로그인 페이지로
+        window.location.href = 'login.html';
+    }
+});
+
+// 사용자 이름 표시 업데이트
+function updateUserDisplay() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    const userNameDisplay = document.getElementById('userNameDisplay');
+    
+    if (currentUser.phone && !currentUser.isGuest) {
+        userNameDisplay.textContent = currentUser.name + '님';
+    } else {
+        userNameDisplay.textContent = '로그인';
+    }
+}
+
 // 초기화
+updateUserDisplay();
 renderMenu();
 updateCart();
 updatePoints();
