@@ -347,6 +347,7 @@ const menuData = [
 // 상태 관리
 let cart = [];
 let currentCategory = 'all';
+let searchKeyword = '';
 let userPoints = parseInt(localStorage.getItem('userPoints')) || 0;
 let pointsHistory = JSON.parse(localStorage.getItem('pointsHistory')) || [];
 let usedPoints = 0;
