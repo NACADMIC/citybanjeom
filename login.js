@@ -43,22 +43,28 @@ document.addEventListener('DOMContentLoaded', () => {
 function handleLogin(e) {
     e.preventDefault();
     const phone = document.getElementById('loginPhone').value;
+    const password = document.getElementById('loginPassword').value;
     
     // localStorage에서 사용자 찾기
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     const user = users.find(u => u.phone === phone);
     
-    if (user) {
-        // 로그인 성공
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        showToast('로그인 성공!', 'success');
-        setTimeout(() => {
-            window.location.href = 'index.html';
-        }, 1000);
-    } else {
-        // 사용자 없음
+    if (!user) {
         showToast('등록되지 않은 전화번호입니다.', 'error');
+        return;
     }
+    
+    if (user.password !== password) {
+        showToast('비밀번호가 일치하지 않습니다.', 'error');
+        return;
+    }
+    
+    // 로그인 성공
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    showToast('로그인 성공!', 'success');
+    setTimeout(() => {
+        window.location.href = 'index.html';
+    }, 1000);
 }
 
 // 회원가입 처리
@@ -66,7 +72,20 @@ function handleSignup(e) {
     e.preventDefault();
     const name = document.getElementById('signupName').value;
     const phone = document.getElementById('signupPhone').value;
+    const password = document.getElementById('signupPassword').value;
+    const passwordConfirm = document.getElementById('signupPasswordConfirm').value;
     const address = document.getElementById('signupAddress').value;
+    
+    // 비밀번호 확인
+    if (password !== passwordConfirm) {
+        showToast('비밀번호가 일치하지 않습니다.', 'error');
+        return;
+    }
+    
+    if (password.length < 6) {
+        showToast('비밀번호는 6자 이상이어야 합니다.', 'error');
+        return;
+    }
     
     // localStorage에서 기존 사용자 목록 가져오기
     const users = JSON.parse(localStorage.getItem('users') || '[]');
@@ -81,6 +100,7 @@ function handleSignup(e) {
     const newUser = {
         name,
         phone,
+        password,
         address,
         points: 0,
         createdAt: new Date().toISOString()
