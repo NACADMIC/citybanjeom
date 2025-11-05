@@ -1,0 +1,269 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-container {
+    background: white;
+    border-radius: 24px;
+    padding: 40px;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.login-header h1 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.login-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+.login-form, .signup-form {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 8px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+    color: #999;
+    font-size: 14px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+.divider span {
+    padding: 0 16px;
+}
+
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-kakao,
+.btn-naver {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-kakao {
+    background: #FEE500;
+    color: #000000;
+}
+
+.btn-kakao:hover {
+    background: #fdd835;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(254, 229, 0, 0.4);
+}
+
+.btn-naver {
+    background: #03C75A;
+    color: white;
+}
+
+.btn-naver:hover {
+    background: #02b351;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(3, 199, 90, 0.4);
+}
+
+.social-icon {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.switch-text {
+    text-align: center;
+    margin-top: 24px;
+    color: #666;
+    font-size: 14px;
+}
+
+.switch-text a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.switch-text a:hover {
+    text-decoration: underline;
+}
+
+.btn-skip {
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    color: #999;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: all 0.2s ease;
+}
+
+.btn-skip:hover {
+    border-color: #667eea;
+    color: #667eea;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 24px;
+    }
+
+    .login-header h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+}
+
+/* 알림 토스트 */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #333;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    animation: slideIn 0.3s ease;
+    z-index: 1000;
+}
+
+.toast.success {
+    background: #4caf50;
+}
+
+.toast.error {
+    background: #f44336;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+

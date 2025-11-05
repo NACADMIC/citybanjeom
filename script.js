@@ -784,6 +784,10 @@ function processOrder() {
     const earnPointsAmount = Math.floor(finalTotal * POINT_RATE);
     const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
     
+    // 현재 사용자 확인
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    const isGuest = !currentUser.phone || currentUser.isGuest;
+    
     // 주문번호 생성
     const orderNumber = 'CT' + Date.now().toString().slice(-8);
     
@@ -800,26 +804,29 @@ function processOrder() {
         usedPoints,
         deliveryFee: DELIVERY_FEE,
         finalTotal,
-        earnedPoints: earnPointsAmount,
+        earnedPoints: isGuest ? 0 : earnPointsAmount,
         address: `${deliveryAddress.value} ${deliveryAddressDetail.value}`,
         phone: phoneNumber.value,
         request: orderRequest.value,
         paymentMethod,
-        status: '배달완료'
+        status: '배달완료',
+        isGuest
     };
     
     orderHistory.unshift(order);
     localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
     
-    // 포인트 처리
-    if (usedPoints > 0) {
-        userPoints -= usedPoints;
-        addPointsHistory('use', usedPoints, '주문 시 포인트 사용');
+    // 포인트 처리 (회원만)
+    if (!isGuest) {
+        if (usedPoints > 0) {
+            userPoints -= usedPoints;
+            addPointsHistory('use', usedPoints, '주문 시 포인트 사용');
+        }
+        
+        userPoints += earnPointsAmount;
+        addPointsHistory('earn', earnPointsAmount, '주문 적립');
+        updatePoints();
     }
-    
-    userPoints += earnPointsAmount;
-    addPointsHistory('earn', earnPointsAmount, '주문 적립');
-    updatePoints();
     
     // 주문서 모달 닫기
     orderModal.classList.remove('show');
