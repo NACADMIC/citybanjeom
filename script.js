@@ -7,7 +7,8 @@ const menuData = [
         desc: '부드럽고 고급진 안심 고기로 볶은 짜장',
         price: 6900,
         category: 'noodle',
-        image: 'https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=400&h=400&fit=crop&q=80',
+        emoji: '🍜',
+        color: '#3d2817',
         badge: '인기'
     },
     {
@@ -16,7 +17,8 @@ const menuData = [
         desc: '부드럽고 고급진 안심고기와 아삭한 양파',
         price: 9000,
         category: 'noodle',
-        image: 'https://images.unsplash.com/photo-1626328083164-7d3e8e168f49?w=400&h=400&fit=crop&q=80'
+        emoji: '🍝',
+        color: '#4a3728'
     },
     {
         id: 3,
@@ -24,7 +26,8 @@ const menuData = [
         desc: '특별한 메뉴! 남은 장에 밥 비벼드세요',
         price: 11000,
         category: 'noodle',
-        image: 'https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=400&h=400&fit=crop&q=80',
+        emoji: '🌶️',
+        color: '#c62828',
         badge: '대표'
     },
     {
@@ -33,7 +36,8 @@ const menuData = [
         desc: '통오징어 한마리가 들어간 직화짬뽕',
         price: 9500,
         category: 'noodle',
-        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=400&fit=crop&q=80'
+        emoji: '🦑',
+        color: '#d32f2f'
     },
     {
         id: 5,
@@ -41,7 +45,8 @@ const menuData = [
         desc: '일반짬뽕보다 2~3배 매운 핫한 짬뽕',
         price: 10500,
         category: 'noodle',
-        image: 'https://images.unsplash.com/photo-1612927969743-7b5c1b5f2f9e?w=400&h=400&fit=crop&q=80',
+        emoji: '🔥',
+        color: '#ff3d00',
         badge: 'HOT'
     },
     {
@@ -50,7 +55,8 @@ const menuData = [
         desc: '경상도식 볶음짬뽕, 한번 먹으면 또 생각나는',
         price: 11000,
         category: 'noodle',
-        image: 'https://images.unsplash.com/photo-1618841557871-b4664fbf0cb3?w=400&h=400&fit=crop&q=80',
+        emoji: '🍲',
+        color: '#ff6b35',
         badge: '대표'
     },
     {
@@ -59,7 +65,8 @@ const menuData = [
         desc: '안심고기, 삼선해물, 아삭한 양파',
         price: 11000,
         category: 'noodle',
-        image: 'https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=400&h=400&fit=crop&q=80'
+        emoji: '🦐',
+        color: '#ff8a65'
     },
     {
         id: 8,
@@ -67,7 +74,8 @@ const menuData = [
         desc: '고추가루를 뺀 하얀 국물에 약간 매운맛',
         price: 11000,
         category: 'noodle',
-        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=400&fit=crop&q=80'
+        emoji: '🥛',
+        color: '#eeeeee'
     },
     {
         id: 9,
@@ -75,7 +83,8 @@ const menuData = [
         desc: '삼선해물과 맑은 색에 담백한 맛',
         price: 11000,
         category: 'noodle',
-        image: 'https://images.unsplash.com/photo-1618841557871-b4664fbf0cb3?w=400&h=400&fit=crop&q=80'
+        emoji: '🍜',
+        color: '#8d6e63'
     },
     {
         id: 10,
@@ -83,7 +92,8 @@ const menuData = [
         desc: '해물 듬뿍 고추간짜장 업그레이드',
         price: 13000,
         category: 'noodle',
-        image: 'https://images.unsplash.com/photo-1626328083164-7d3e8e168f49?w=400&h=400&fit=crop&q=80'
+        emoji: '👑',
+        color: '#ffd700'
     },
     {
         id: 11,
@@ -91,7 +101,8 @@ const menuData = [
         desc: '통오징어, 여러가지 해물 듬뿍',
         price: 13000,
         category: 'noodle',
-        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=400&fit=crop&q=80'
+        emoji: '🦞',
+        color: '#e65100'
     },
     {
         id: 12,
@@ -99,7 +110,8 @@ const menuData = [
         desc: '불향가득 소고기를 직화로 볶아 풍미UP',
         price: 13000,
         category: 'noodle',
-        image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=400&fit=crop&q=80'
+        emoji: '🥩',
+        color: '#8b4513'
     },
     // 밥류
     {
@@ -108,7 +120,8 @@ const menuData = [
         desc: '짜장소스, 짬뽕국물, 볶음밥 세가지 맛',
         price: 9000,
         category: 'rice',
-        image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=400&fit=crop&q=80'
+        emoji: '☁️',
+        color: '#f57c00'
     },
     {
         id: 14,
@@ -116,7 +129,8 @@ const menuData = [
         desc: '직화짬뽕을 공기밥과 함께',
         price: 10000,
         category: 'rice',
-        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=400&fit=crop&q=80'
+        emoji: '🍛',
+        color: '#d84315'
     },
     {
         id: 15,
@@ -124,7 +138,8 @@ const menuData = [
         desc: '탱글탱글 당면, 야채와 유슬고기',
         price: 10000,
         category: 'rice',
-        image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=400&fit=crop&q=80'
+        emoji: '🥢',
+        color: '#6d4c41'
     },
     {
         id: 16,
@@ -132,7 +147,8 @@ const menuData = [
         desc: '매콤하고 고소한 마파두부',
         price: 10000,
         category: 'rice',
-        image: 'https://images.unsplash.com/photo-1633356356337-19f3c77e5f6e?w=400&h=400&fit=crop&q=80'
+        emoji: '🌶️',
+        color: '#c62828'
     },
     {
         id: 17,
@@ -140,7 +156,8 @@ const menuData = [
         desc: '총총 박힌 새우와 세가지 맛',
         price: 11000,
         category: 'rice',
-        image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=400&fit=crop&q=80'
+        emoji: '🦐',
+        color: '#ff8a65'
     },
     {
         id: 18,
@@ -148,7 +165,8 @@ const menuData = [
         desc: '삼선 해물과 세가지 맛',
         price: 11000,
         category: 'rice',
-        image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=400&fit=crop&q=80'
+        emoji: '🍚',
+        color: '#ff6b35'
     },
     {
         id: 19,
@@ -156,7 +174,8 @@ const menuData = [
         desc: '해물, 야채 매콤하게 직화로 볶고 계란까지',
         price: 11000,
         category: 'rice',
-        image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=400&fit=crop&q=80',
+        emoji: '🍱',
+        color: '#ff5722',
         badge: '대표'
     },
     {
@@ -165,7 +184,8 @@ const menuData = [
         desc: '순두부 한통이 통째로! 짬뽕과 조화',
         price: 11000,
         category: 'rice',
-        image: 'https://images.unsplash.com/photo-1633356356337-19f3c77e5f6e?w=400&h=400&fit=crop&q=80',
+        emoji: '🥘',
+        color: '#f44336',
         badge: '대표'
     },
     {
@@ -174,7 +194,8 @@ const menuData = [
         desc: '불향 가득한 직화제육덮밥',
         price: 11000,
         category: 'rice',
-        image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=400&fit=crop&q=80'
+        emoji: '🐷',
+        color: '#d32f2f'
     },
     {
         id: 22,
@@ -182,7 +203,8 @@ const menuData = [
         desc: '해삼, 죽순, 버섯의 담백하고 고급스러운 맛',
         price: 13000,
         category: 'rice',
-        image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=400&h=400&fit=crop&q=80'
+        emoji: '🍄',
+        color: '#6d4c41'
     },
     {
         id: 23,
@@ -190,7 +212,8 @@ const menuData = [
         desc: '삼선해물과 야채를 직화로 조리',
         price: 14000,
         category: 'rice',
-        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=400&fit=crop&q=80'
+        emoji: '🦞',
+        color: '#ff6b35'
     },
     // 요리류
     {
@@ -199,7 +222,8 @@ const menuData = [
         desc: '고급 안심 고기로 만든 바삭부들 탕수육',
         price: 20000,
         category: 'main',
-        image: 'https://images.unsplash.com/photo-1635321593217-40050ad13c74?w=400&h=400&fit=crop&q=80',
+        emoji: '🍖',
+        color: '#e65100',
         badge: '대표'
     },
     {
@@ -208,7 +232,8 @@ const menuData = [
         desc: '고급 안심 고기로 만든 바삭부들 탕수육',
         price: 25000,
         category: 'main',
-        image: 'https://images.unsplash.com/photo-1635321593217-40050ad13c74?w=400&h=400&fit=crop&q=80',
+        emoji: '🍖',
+        color: '#ef6c00',
         badge: '대표'
     },
     {
@@ -217,7 +242,8 @@ const menuData = [
         desc: '고급 안심 고기로 만든 바삭부들 탕수육',
         price: 30000,
         category: 'main',
-        image: 'https://images.unsplash.com/photo-1635321593217-40050ad13c74?w=400&h=400&fit=crop&q=80',
+        emoji: '🍖',
+        color: '#f57c00',
         badge: '대표'
     },
     {
@@ -226,7 +252,8 @@ const menuData = [
         desc: '화려한 비주얼! 야채, 해물과 겨자소스',
         price: 32000,
         category: 'main',
-        image: 'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=400&fit=crop&q=80'
+        emoji: '🥗',
+        color: '#558b2f'
     },
     {
         id: 28,
@@ -234,7 +261,8 @@ const menuData = [
         desc: '삼선해물과 함께 조리한 술국',
         price: 15000,
         category: 'main',
-        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=400&fit=crop&q=80'
+        emoji: '🍲',
+        color: '#d32f2f'
     },
     // 신메뉴
     {
@@ -243,7 +271,8 @@ const menuData = [
         desc: '안심고기 170g 추가! 고기집 1인분 수준',
         price: 10000,
         category: 'noodle',
-        image: 'https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=400&h=400&fit=crop&q=80',
+        emoji: '🥩',
+        color: '#8b4513',
         badge: 'NEW'
     },
     {
@@ -252,7 +281,8 @@ const menuData = [
         desc: '바지락 80~100마리 이상! 다른 해물 없음',
         price: 11000,
         category: 'noodle',
-        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=400&fit=crop&q=80',
+        emoji: '🐚',
+        color: '#00897b',
         badge: 'NEW'
     },
     {
@@ -261,7 +291,8 @@ const menuData = [
         desc: '안심고기 170g 추가! 소스 못버려요',
         price: 12000,
         category: 'noodle',
-        image: 'https://images.unsplash.com/photo-1626328083164-7d3e8e168f49?w=400&h=400&fit=crop&q=80',
+        emoji: '🥩',
+        color: '#6d4c41',
         badge: 'NEW'
     },
     {
@@ -270,7 +301,8 @@ const menuData = [
         desc: '안심고기 170g 추가! 특별한 조합',
         price: 14000,
         category: 'noodle',
-        image: 'https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=400&h=400&fit=crop&q=80',
+        emoji: '🥩',
+        color: '#bf360c',
         badge: 'NEW'
     },
     // 사이드
@@ -280,7 +312,8 @@ const menuData = [
         desc: '바삭한 군만두 8개 + 미니간장',
         price: 5000,
         category: 'side',
-        image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=400&h=400&fit=crop&q=80'
+        emoji: '🥟',
+        color: '#fbc02d'
     },
     {
         id: 34,
@@ -288,7 +321,8 @@ const menuData = [
         desc: '꽃빵튀김과 연유크림 소스',
         price: 3000,
         category: 'side',
-        image: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=400&fit=crop&q=80'
+        emoji: '🍩',
+        color: '#ffeb3b'
     },
     {
         id: 35,
@@ -296,7 +330,8 @@ const menuData = [
         desc: '새우토스트! 식빵 사이에 으깬 새우',
         price: 6000,
         category: 'side',
-        image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=400&fit=crop&q=80'
+        emoji: '🍤',
+        color: '#ff9800'
     },
     {
         id: 36,
@@ -304,7 +339,8 @@ const menuData = [
         desc: '매콤한 칠리소스로 조리한 만두',
         price: 7000,
         category: 'side',
-        image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=400&h=400&fit=crop&q=80'
+        emoji: '🌶️',
+        color: '#f44336'
     }
 ];
 
@@ -394,9 +430,11 @@ function renderMenu() {
         const menuItem = document.createElement('div');
         menuItem.className = 'menu-item';
         const badgeHtml = item.badge ? `<span class="menu-badge">${item.badge}</span>` : '';
+        const emoji = item.emoji || '🍜';
+        const color = item.color || '#ff6b6b';
         menuItem.innerHTML = `
-            <div class="menu-image">
-                <img src="${item.image}" alt="${item.name}" loading="lazy">
+            <div class="menu-image" style="background: linear-gradient(135deg, ${color}22, ${color}44);">
+                <span class="menu-emoji">${emoji}</span>
             </div>
             <div class="menu-info">
                 <div>
