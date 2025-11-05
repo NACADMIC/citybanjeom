@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시티반점 - 중식배달</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div>
+                <h1>시티반점</h1>
+                <p class="subtitle">맛있는 중식 배달</p>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" id="orderHistoryBtn" title="주문내역">
+                    <span>📋</span>
+                </button>
+                <div class="points-badge" id="pointsBadge">
+                    <span class="points-icon">⭐</span>
+                    <div class="points-info">
+                        <span class="points-label">포인트</span>
+                        <span class="points-value" id="pointsValue">0P</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 가게 정보 섹션 -->
+    <section class="store-info">
+        <div class="info-item">
+            <span class="info-icon">📞</span>
+            <span class="info-text">031-656-8255</span>
+        </div>
+        <div class="info-item">
+            <span class="info-icon">🕒</span>
+            <span class="info-text">영업시간 9:30 - 20:20</span>
+        </div>
+        <div class="info-item">
+            <span class="info-icon">💰</span>
+            <span class="info-text">최소주문 9,900원</span>
+        </div>
+    </section>
+
+    <nav class="category-nav">
+        <button class="category-btn active" data-category="all">전체</button>
+        <button class="category-btn" data-category="noodle">🍜 면류</button>
+        <button class="category-btn" data-category="rice">🍚 밥류</button>
+        <button class="category-btn" data-category="main">🍖 요리</button>
+        <button class="category-btn" data-category="side">🥟 사이드</button>
+    </nav>
+
+    <main class="menu-container">
+        <div class="menu-list" id="menuList">
+            <!-- 메뉴가 동적으로 추가됩니다 -->
+        </div>
+    </main>
+
+    <div class="cart-container">
+        <button class="cart-toggle" id="cartToggle">
+            <span class="cart-icon">🛒</span>
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </div>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>장바구니</h2>
+            <button class="close-btn" id="closeCart">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">장바구니가 비어있습니다</p>
+        </div>
+        <div class="cart-footer">
+            <div class="points-use-section">
+                <label class="points-use-label">
+                    <input type="checkbox" id="usePointsCheck">
+                    <span>포인트 사용 (<span id="availablePoints">0</span>P 보유)</span>
+                </label>
+                <div class="points-input-group" id="pointsInputGroup" style="display: none;">
+                    <input type="number" id="pointsInput" placeholder="사용할 포인트" min="0" max="0">
+                    <button type="button" class="points-max-btn" id="pointsMaxBtn">전액</button>
+                </div>
+            </div>
+            <div class="cart-total">
+                <span>총 주문금액</span>
+                <span class="total-price" id="totalPrice">0원</span>
+            </div>
+            <div class="discount-info" id="discountInfo" style="display: none;">
+                <span>포인트 할인</span>
+                <span class="discount-amount" id="discountAmount">-0원</span>
+            </div>
+            <div class="final-total" id="finalTotal">
+                <span>최종 결제금액</span>
+                <span class="final-price" id="finalPrice">0원</span>
+            </div>
+            <div class="earn-points-info" id="earnPointsInfo">
+                <span>🎁 이번 주문시 <strong id="earnPoints">0P</strong> 적립 예정</span>
+            </div>
+            <button class="order-btn" id="orderBtn">주문서 작성하기</button>
+        </div>
+    </div>
+
+    <!-- 주문서 작성 모달 -->
+    <div class="modal order-modal" id="orderModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>주문서 작성</h2>
+                <button class="close-btn" id="closeOrderModal">✕</button>
+            </div>
+            <div class="modal-body">
+                <form id="orderForm">
+                    <!-- 주문 상품 확인 -->
+                    <div class="form-section">
+                        <h3 class="section-title">주문 상품</h3>
+                        <div class="order-items-summary" id="orderItemsSummary"></div>
+                    </div>
+
+                    <!-- 배달 주소 입력 -->
+                    <div class="form-section">
+                        <h3 class="section-title">배달 주소</h3>
+                        <div class="form-group">
+                            <input type="text" id="deliveryAddress" class="form-input" placeholder="예) 경기도 안성시 공도읍..." required>
+                            <button type="button" class="btn-secondary" id="loadSavedAddress">저장된 주소</button>
+                        </div>
+                        <input type="text" id="deliveryAddressDetail" class="form-input" placeholder="상세주소 (동/호수)" required>
+                    </div>
+
+                    <!-- 연락처 입력 -->
+                    <div class="form-section">
+                        <h3 class="section-title">연락처</h3>
+                        <input type="tel" id="phoneNumber" class="form-input" placeholder="010-1234-5678" required>
+                    </div>
+
+                    <!-- 요청사항 -->
+                    <div class="form-section">
+                        <h3 class="section-title">요청사항</h3>
+                        <div class="request-buttons">
+                            <button type="button" class="request-btn" data-request="문 앞에 놓아주세요">문 앞에 놓아주세요</button>
+                            <button type="button" class="request-btn" data-request="벨 눌러주세요">벨 눌러주세요</button>
+                            <button type="button" class="request-btn" data-request="전화 주세요">전화 주세요</button>
+                        </div>
+                        <textarea id="orderRequest" class="form-textarea" placeholder="배달 시 요청사항을 입력해주세요" rows="3"></textarea>
+                    </div>
+
+                    <!-- 결제 방법 -->
+                    <div class="form-section">
+                        <h3 class="section-title">결제 방법</h3>
+                        <div class="payment-methods">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="card" checked>
+                                <span class="payment-label">
+                                    <span class="payment-icon">💳</span>
+                                    <span>신용/체크카드</span>
+                                </span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="cash">
+                                <span class="payment-label">
+                                    <span class="payment-icon">💵</span>
+                                    <span>현금</span>
+                                </span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="transfer">
+                                <span class="payment-label">
+                                    <span class="payment-icon">🏦</span>
+                                    <span>계좌이체</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 최종 금액 -->
+                    <div class="form-section">
+                        <div class="order-summary">
+                            <div class="summary-row">
+                                <span>주문금액</span>
+                                <span id="summaryTotal">0원</span>
+                            </div>
+                            <div class="summary-row" id="summaryDiscountRow" style="display:none;">
+                                <span>포인트 할인</span>
+                                <span id="summaryDiscount" class="discount-text">-0원</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>배달팁</span>
+                                <span id="summaryDeliveryFee">3,000원</span>
+                            </div>
+                            <div class="summary-row final">
+                                <span>최종 결제금액</span>
+                                <span id="summaryFinalPrice">0원</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-order-btn">
+                        <span id="finalPayAmount">0원</span> 결제하기
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 주문 완료 모달 -->
+    <div class="modal" id="orderCompleteModal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="complete-animation">
+                    <div class="success-icon">✓</div>
+                    <h2>주문이 완료되었습니다!</h2>
+                    <p class="order-number">주문번호: <strong id="completedOrderNumber"></strong></p>
+                    <div class="order-status">
+                        <div class="status-item active">
+                            <div class="status-dot"></div>
+                            <span>주문접수</span>
+                        </div>
+                        <div class="status-line"></div>
+                        <div class="status-item">
+                            <div class="status-dot"></div>
+                            <span>조리중</span>
+                        </div>
+                        <div class="status-line"></div>
+                        <div class="status-item">
+                            <div class="status-dot"></div>
+                            <span>배달중</span>
+                        </div>
+                        <div class="status-line"></div>
+                        <div class="status-item">
+                            <div class="status-dot"></div>
+                            <span>배달완료</span>
+                        </div>
+                    </div>
+                    <p class="estimated-time">예상 도착 시간: <strong id="estimatedTime">약 40~50분</strong></p>
+                    <button class="btn-primary" id="closeCompleteModal">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 주문내역 모달 -->
+    <div class="modal" id="orderHistoryModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>주문내역</h2>
+                <button class="close-btn" id="closeOrderHistoryModal">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="order-history-list" id="orderHistoryList">
+                    <p class="empty-history">주문 내역이 없습니다</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- 포인트 내역 모달 -->
+    <div class="modal" id="pointsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>포인트 내역</h2>
+                <button class="close-btn" id="closePointsModal">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="points-summary">
+                    <div class="current-points">
+                        <span>보유 포인트</span>
+                        <span class="large-points" id="modalPointsValue">0P</span>
+                    </div>
+                </div>
+                <div class="points-history" id="pointsHistory">
+                    <p class="empty-history">포인트 내역이 없습니다</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
