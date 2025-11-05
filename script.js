@@ -412,6 +412,15 @@ const closeCompleteModal = document.getElementById('closeCompleteModal');
 const completedOrderNumber = document.getElementById('completedOrderNumber');
 const estimatedTime = document.getElementById('estimatedTime');
 
+// 주문 상태 조회 모달
+const orderStatusBtn = document.getElementById('orderStatusBtn');
+const orderStatusModal = document.getElementById('orderStatusModal');
+const closeOrderStatusModal = document.getElementById('closeOrderStatusModal');
+const searchOrderBtn = document.getElementById('searchOrderBtn');
+const orderNumberInput = document.getElementById('orderNumberInput');
+const orderStatusResult = document.getElementById('orderStatusResult');
+const orderNotFound = document.getElementById('orderNotFound');
+
 // 주문내역 모달
 const orderHistoryBtn = document.getElementById('orderHistoryBtn');
 const orderHistoryModal = document.getElementById('orderHistoryModal');
@@ -565,6 +574,7 @@ overlay.addEventListener('click', () => {
     cartSidebar.classList.remove('open');
     orderModal.classList.remove('show');
     orderCompleteModal.classList.remove('show');
+    orderStatusModal.classList.remove('show');
     orderHistoryModal.classList.remove('show');
     pointsModal.classList.remove('show');
     overlay.classList.remove('show');
@@ -886,6 +896,116 @@ closeCompleteModal.addEventListener('click', () => {
     orderCompleteModal.classList.remove('show');
     overlay.classList.remove('show');
 });
+
+// 주문 상태 조회
+orderStatusBtn.addEventListener('click', () => {
+    orderStatusModal.classList.add('show');
+    overlay.classList.add('show');
+    orderStatusResult.classList.add('hidden');
+    orderNotFound.classList.add('hidden');
+    orderNumberInput.value = '';
+});
+
+closeOrderStatusModal.addEventListener('click', () => {
+    orderStatusModal.classList.remove('show');
+    overlay.classList.remove('show');
+});
+
+searchOrderBtn.addEventListener('click', () => {
+    const orderNumber = orderNumberInput.value.trim().toUpperCase();
+    
+    if (!orderNumber) {
+        alert('주문번호를 입력해주세요');
+        return;
+    }
+    
+    searchOrderStatus(orderNumber);
+});
+
+orderNumberInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        searchOrderBtn.click();
+    }
+});
+
+function searchOrderStatus(orderNumber) {
+    // 모든 주문 내역에서 검색
+    const order = orderHistory.find(o => o.orderNumber === orderNumber);
+    
+    if (!order) {
+        orderStatusResult.classList.add('hidden');
+        orderNotFound.classList.remove('hidden');
+        return;
+    }
+    
+    // 주문 찾음
+    orderNotFound.classList.add('hidden');
+    orderStatusResult.classList.remove('hidden');
+    
+    // 주문 정보 표시
+    document.getElementById('resultOrderNumber').textContent = order.orderNumber;
+    document.getElementById('resultOrderDate').textContent = order.date;
+    document.getElementById('resultOrderAddress').textContent = order.address;
+    document.getElementById('resultOrderPhone').textContent = order.phone;
+    document.getElementById('resultOrderAmount').textContent = order.finalTotal.toLocaleString() + '원';
+    
+    // 주문 메뉴 표시
+    document.getElementById('resultOrderItems').innerHTML = order.items.map(item => `
+        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+            <span>${item.name} x${item.quantity}</span>
+            <span>${(item.price * item.quantity).toLocaleString()}원</span>
+        </div>
+    `).join('');
+    
+    // 주문 상태 시뮬레이션 (실제로는 서버에서 가져와야 함)
+    simulateOrderStatus(order);
+}
+
+function simulateOrderStatus(order) {
+    const orderDate = new Date(order.date);
+    const now = new Date();
+    const elapsedMinutes = Math.floor((now - orderDate) / 1000 / 60);
+    
+    // 모든 단계 초기화
+    for (let i = 1; i <= 4; i++) {
+        const step = document.getElementById(`step${i}`);
+        step.classList.remove('active', 'completed');
+        document.getElementById(`time${i}`).textContent = '';
+    }
+    
+    // 단계별 시간 설정 (10분, 30분, 50분, 60분)
+    const stages = [
+        { minutes: 0, text: '주문 접수 완료' },
+        { minutes: 10, text: '조리 시작' },
+        { minutes: 30, text: '배달 출발' },
+        { minutes: 50, text: '배달 완료' }
+    ];
+    
+    let currentStage = 0;
+    stages.forEach((stage, index) => {
+        if (elapsedMinutes >= stage.minutes) {
+            currentStage = index + 1;
+            const step = document.getElementById(`step${index + 1}`);
+            step.classList.add('completed');
+            
+            const time = new Date(orderDate.getTime() + stage.minutes * 60000);
+            document.getElementById(`time${index + 1}`).textContent = 
+                time.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+        }
+    });
+    
+    // 현재 진행 중인 단계 표시
+    if (currentStage < 4) {
+        const nextStep = document.getElementById(`step${currentStage + 1}`);
+        nextStep.classList.add('active');
+        nextStep.classList.remove('completed');
+        
+        const nextStageTime = stages[currentStage].minutes;
+        const remainingMinutes = nextStageTime - elapsedMinutes;
+        document.getElementById(`time${currentStage + 1}`).textContent = 
+            `약 ${remainingMinutes}분 후`;
+    }
+}
 
 // 주문내역 보기
 orderHistoryBtn.addEventListener('click', () => {
