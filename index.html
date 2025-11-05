@@ -340,6 +340,38 @@
 
     <div class="overlay" id="overlay"></div>
 
+    <!-- 로그인 선택 모달 -->
+    <div class="modal" id="loginSelectModal">
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>주문 방법 선택</h2>
+                <button class="close-btn" id="closeLoginSelectModal">✕</button>
+            </div>
+            <div class="modal-body" style="padding: 30px 20px;">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="font-size: 48px; margin-bottom: 16px;">🍜</div>
+                    <p style="font-size: 15px; color: #666; line-height: 1.6;">
+                        로그인하시면 포인트 적립 혜택을 받으실 수 있습니다
+                    </p>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <button class="btn-login-order" id="btnLoginOrder">
+                        <span style="font-size: 24px; margin-right: 8px;">👤</span>
+                        로그인하고 주문하기
+                        <span style="display: block; font-size: 12px; opacity: 0.8; margin-top: 4px;">포인트 5% 적립</span>
+                    </button>
+                    
+                    <button class="btn-guest-order" id="btnGuestOrder">
+                        <span style="font-size: 24px; margin-right: 8px;">🚀</span>
+                        비회원으로 주문하기
+                        <span style="display: block; font-size: 12px; opacity: 0.8; margin-top: 4px;">빠른 주문 (적립 불가)</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 포인트 내역 모달 -->
     <div class="modal" id="pointsModal">
         <div class="modal-content">

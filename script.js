@@ -415,8 +415,13 @@ const closeCompleteModal = document.getElementById('closeCompleteModal');
 const completedOrderNumber = document.getElementById('completedOrderNumber');
 const estimatedTime = document.getElementById('estimatedTime');
 
+// 로그인 선택 모달
+const loginSelectModal = document.getElementById('loginSelectModal');
+const closeLoginSelectModal = document.getElementById('closeLoginSelectModal');
+const btnLoginOrder = document.getElementById('btnLoginOrder');
+const btnGuestOrder = document.getElementById('btnGuestOrder');
+
 // 주문 상태 조회 모달
-const orderStatusBtn = document.getElementById('orderStatusBtn');
 const orderStatusModal = document.getElementById('orderStatusModal');
 const closeOrderStatusModal = document.getElementById('closeOrderStatusModal');
 const searchOrderBtn = document.getElementById('searchOrderBtn');
@@ -600,6 +605,7 @@ overlay.addEventListener('click', () => {
     orderStatusModal.classList.remove('show');
     orderHistoryModal.classList.remove('show');
     pointsModal.classList.remove('show');
+    loginSelectModal.classList.remove('show');
     overlay.classList.remove('show');
 });
 
@@ -746,7 +752,43 @@ orderBtn.addEventListener('click', () => {
         return;
     }
     
-    // 주문서 모달 열기
+    // 로그인 상태 확인
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    const isLoggedIn = currentUser.phone && !currentUser.isGuest;
+    
+    if (isLoggedIn) {
+        // 이미 로그인된 경우 바로 주문서 열기
+        openOrderModal();
+    } else {
+        // 로그인 안 된 경우 선택 모달 표시
+        showLoginSelectModal();
+    }
+});
+
+// 로그인 선택 모달 표시
+function showLoginSelectModal() {
+    loginSelectModal.classList.add('show');
+    cartSidebar.classList.remove('open');
+    overlay.classList.add('show');
+}
+
+closeLoginSelectModal.addEventListener('click', () => {
+    loginSelectModal.classList.remove('show');
+    overlay.classList.remove('show');
+});
+
+// 로그인하고 주문하기
+btnLoginOrder.addEventListener('click', () => {
+    loginSelectModal.classList.remove('show');
+    overlay.classList.remove('show');
+    // 로그인 페이지로 이동 (주문 정보는 유지됨)
+    window.location.href = './login.html';
+});
+
+// 비회원으로 주문하기
+btnGuestOrder.addEventListener('click', () => {
+    loginSelectModal.classList.remove('show');
+    // 바로 주문서 열기
     openOrderModal();
 });
 
